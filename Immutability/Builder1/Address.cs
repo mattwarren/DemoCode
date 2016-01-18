@@ -1,25 +1,28 @@
 ﻿// Copyright 2016 Jon Skeet. All Rights Reserved.
 // Licensed under the Apache License Version 2.0.
 
-public sealed class Address
+namespace Builder1
 {
-    public string Street { get; }
-    public string City { get; }
-
-    private Address(Builder builder)
+    public sealed class Address
     {
-        Street = builder.Street;
-        City = builder.City;
-    }
+        public string Street { get; }
+        public string City { get; }
 
-    public sealed class Builder
-    {
-        public string Street { get; set; }
-        public string City { get; set; }
-
-        public Address Build()
+        private Address(Builder builder)
         {
-            return new Address(this);
+            Street = builder.Street;
+            City = builder.City;
+        }
+
+        public sealed class Builder
+        {
+            public string Street { get; set; }
+            public string City { get; set; }
+
+            public Address Build()
+            {
+                return new Address(this);
+            }
         }
     }
 }

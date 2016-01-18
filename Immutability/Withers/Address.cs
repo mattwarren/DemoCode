@@ -1,24 +1,27 @@
 ﻿// Copyright 2016 Jon Skeet. All Rights Reserved.
 // Licensed under the Apache License Version 2.0.
 
-public sealed class Address
+namespace Withers
 {
-    public string Street { get; }
-    public string City { get; }
-
-    public Address(string street, string city)
+    public sealed class Address
     {
-        Street = street;
-        City = city;
-    }
+        public string Street { get; }
+        public string City { get; }
 
-    public Address WithStreet(string street)
-    {
-        return new Address(street, City);
-    }
+        public Address(string street, string city)
+        {
+            Street = street;
+            City = city;
+        }
 
-    public Address WithCity(string city)
-    {
-        return new Address(Street, city);
+        public Address WithStreet(string street)
+        {
+            return new Address(street, City);
+        }
+
+        public Address WithCity(string city)
+        {
+            return new Address(Street, city);
+        }
     }
 }

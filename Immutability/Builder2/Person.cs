@@ -3,43 +3,46 @@
 
 using System.Collections.Generic;
 
-public sealed class Person
+namespace Builder2
 {
-    public string Name { get; private set; }
-    public Address Address { get; private set; }
-    public IReadOnlyList<PhoneNumber> Phones { get; }
-
-    private Person()
+    public sealed class Person
     {
-        Phones = new FreezableList<PhoneNumber>();
-    }
+        public string Name { get; private set; }
+        public Address Address { get; private set; }
+        public IReadOnlyList<PhoneNumber> Phones { get; }
 
-    public sealed class Builder
-    {
-        private Person underlying;
-
-        private Person Underlying => underlying ?? (underlying = new Person());
-
-        public string Name
+        private Person()
         {
-            get { return Underlying.Name; }
-            set { Underlying.Name = value; }
+            Phones = new FreezableList<PhoneNumber>();
         }
 
-        public Address Address
+        public sealed class Builder
         {
-            get { return Underlying.Address; }
-            set { Underlying.Address = value; }
-        }
+            private Person underlying;
 
-        public IList<PhoneNumber> Phones => (IList<PhoneNumber>) Underlying.Phones;
+            private Person Underlying => underlying ?? (underlying = new Person());
 
-        public Person Build()
-        {
-            var ret = Underlying;
-            ((FreezableList<PhoneNumber>) ret.Phones).Freeze();
-            underlying = null;
-            return ret;
+            public string Name
+            {
+                get { return Underlying.Name; }
+                set { Underlying.Name = value; }
+            }
+
+            public Address Address
+            {
+                get { return Underlying.Address; }
+                set { Underlying.Address = value; }
+            }
+
+            public IList<PhoneNumber> Phones => (IList<PhoneNumber>)Underlying.Phones;
+
+            public Person Build()
+            {
+                var ret = Underlying;
+                ((FreezableList<PhoneNumber>)ret.Phones).Freeze();
+                underlying = null;
+                return ret;
+            }
         }
     }
 }

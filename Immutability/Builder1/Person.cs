@@ -4,28 +4,31 @@
 using System.Collections.Generic;
 using System.Collections.Immutable;
 
-public sealed class Person
+namespace Builder1
 {
-    public string Name { get; }
-    public Address Address { get; }
-    public IImmutableList<PhoneNumber> Phones { get; }
-
-    private Person(Builder builder)
+    public sealed class Person
     {
-        Name = builder.Name;
-        Address = builder.Address;
-        Phones = Phones.ToImmutableList();
-    }
+        public string Name { get; }
+        public Address Address { get; }
+        public IImmutableList<PhoneNumber> Phones { get; }
 
-    public sealed class Builder
-    {
-        public string Name { get; set; }
-        public Address Address { get; set; }
-        public List<PhoneNumber> Phones { get; } = new List<PhoneNumber>();
-
-        public Person Build()
+        private Person(Builder builder)
         {
-            return new Person(this);
+            Name = builder.Name;
+            Address = builder.Address;
+            Phones = (Phones != null ? Phones.ToImmutableList() : Phones);
+        }
+
+        public sealed class Builder
+        {
+            public string Name { get; set; }
+            public Address Address { get; set; }
+            public List<PhoneNumber> Phones { get; } = new List<PhoneNumber>();
+
+            public Person Build()
+            {
+                return new Person(this);
+            }
         }
     }
 }

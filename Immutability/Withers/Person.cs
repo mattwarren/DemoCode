@@ -4,31 +4,34 @@
 using System.Collections.Generic;
 using System.Collections.Immutable;
 
-public sealed class Person
+namespace Withers
 {
-    public string Name { get; }
-    public Address Address { get; }
-    public IImmutableList<PhoneNumber> Phones { get; }
-
-    public Person(string name, Address address, IImmutableList<PhoneNumber> phones)
+    public sealed class Person
     {
-        Name = name;
-        Address = address;
-        Phones = phones;
-    }
+        public string Name { get; }
+        public Address Address { get; }
+        public IImmutableList<PhoneNumber> Phones { get; }
 
-    public Person WithName(string name)
-    {
-        return new Person(name, Address, Phones);
-    }
+        public Person(string name, Address address, IImmutableList<PhoneNumber> phones)
+        {
+            Name = name;
+            Address = address;
+            Phones = phones;
+        }
 
-    public Person WithAddress(Address address)
-    {
-        return new Person(Name, address, Phones);
-    }
+        public Person WithName(string name)
+        {
+            return new Person(name, Address, Phones);
+        }
 
-    public Person WithPhones(IImmutableList<PhoneNumber> phones)
-    {
-        return new Person(Name, Address, phones);
+        public Person WithAddress(Address address)
+        {
+            return new Person(Name, address, Phones);
+        }
+
+        public Person WithPhones(IImmutableList<PhoneNumber> phones)
+        {
+            return new Person(Name, Address, phones);
+        }
     }
 }

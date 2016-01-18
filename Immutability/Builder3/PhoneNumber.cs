@@ -1,25 +1,28 @@
 ﻿// Copyright 2016 Jon Skeet. All Rights Reserved.
 // Licensed under the Apache License Version 2.0.
 
-public sealed class PhoneNumber
+namespace Builder3
 {
-    public string Number { get; set; }
-    public PhoneNumberType Type { get; set; }
-
-    public Immutable ToImmutable()
+    public sealed class PhoneNumber
     {
-        return new Immutable(this);
-    }
+        public string Number { get; set; }
+        public PhoneNumberType Type { get; set; }
 
-    public sealed class Immutable
-    {
-        public string Number { get; }
-        public PhoneNumberType Type { get; }
-
-        internal Immutable(PhoneNumber mutable)
+        public Immutable ToImmutable()
         {
-            Number = mutable.Number;
-            Type = mutable.Type;
+            return new Immutable(this);
+        }
+
+        public sealed class Immutable
+        {
+            public string Number { get; }
+            public PhoneNumberType Type { get; }
+
+            internal Immutable(PhoneNumber mutable)
+            {
+                Number = mutable.Number;
+                Type = mutable.Type;
+            }
         }
     }
 }

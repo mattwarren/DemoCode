@@ -5,28 +5,31 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
 
-public sealed class Person
+namespace Builder3
 {
-    public string Name { get; set; }
-    public Address Address { get; set; }
-    public List<PhoneNumber> Phones { get; set; }
-
-    public Immutable ToImmutable()
+    public sealed class Person
     {
-        return new Immutable(this);
-    }
+        public string Name { get; set; }
+        public Address Address { get; set; }
+        public List<PhoneNumber> Phones { get; set; }
 
-    public sealed class Immutable
-    {
-        public string Name { get; }
-        public Address.Immutable Address { get; }
-        public IImmutableList<PhoneNumber.Immutable> Phones { get; }
-
-        internal Immutable(Person mutable)
+        public Immutable ToImmutable()
         {
-            Name = mutable.Name;
-            Address = mutable.Address.ToImmutable();
-            Phones = mutable.Phones.Select(x => x.ToImmutable()).ToImmutableList();
+            return new Immutable(this);
+        }
+
+        public sealed class Immutable
+        {
+            public string Name { get; }
+            public Address.Immutable Address { get; }
+            public IImmutableList<PhoneNumber.Immutable> Phones { get; }
+
+            internal Immutable(Person mutable)
+            {
+                Name = mutable.Name;
+                Address = mutable.Address.ToImmutable();
+                Phones = (mutable.Phones != null ? mutable.Phones.Select(x => x.ToImmutable()).ToImmutableList() : null);
+            }
         }
     }
 }
