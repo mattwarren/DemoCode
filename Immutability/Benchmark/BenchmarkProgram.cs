@@ -1,4 +1,8 @@
 ﻿using BenchmarkDotNet;
+using BenchmarkDotNet.Plugins;
+using BenchmarkDotNet.Plugins.Loggers;
+using BenchmarkDotNet.Plugins.ResultExtenders;
+using System.Collections.Generic;
 using System.Collections.Immutable;
 
 namespace ImmutabilityBenchmark
@@ -7,7 +11,28 @@ namespace ImmutabilityBenchmark
     {
         static void Main(string[] args)
         {
-            new BenchmarkRunner().Run<BenchmarkProgram>();
+            // This currently doesn't work, because the BenchmarkBaselineDeltaResultExtender() is NEVER wired up!!!!!!
+            //new BenchmarkRunner().Run<BenchmarkProgram>();
+
+            var logger = new BenchmarkAccumulationLogger();
+            var extender = new BenchmarkBaselineDeltaResultExtender();
+            var plugins = BenchmarkPluginBuilder.CreateDefault()
+                                .AddLogger(logger)
+                                .AddResultExtender(extender)
+                                .Build();
+            var reports = new BenchmarkRunner(plugins).Run<BenchmarkProgram>();
+        }
+
+        [Benchmark(Baseline = true)]
+        public MutablePerson MutablePOCO()
+        {
+            var jon = new MutablePerson
+            {
+                Name = "Jon",
+                Address = new MutableAddress { City = "Reading", Street = "..." },
+                Phones = { }
+            };
+            return jon;
         }
 
         [Benchmark]
@@ -55,6 +80,45 @@ namespace ImmutabilityBenchmark
                 phones: new[] { new Withers.PhoneNumber("1235", Withers.PhoneNumberType.Home) }.ToImmutableList());
             var later = jon.WithAddress(new Withers.Address("School Road", "Reading"));
             return jon;
+        }
+
+        public sealed class MutablePerson
+        {
+            public string Name { get; set; }
+            public MutableAddress Address { get; set; }
+            public IReadOnlyList<MutablePhoneNumber> Phones { get; }
+
+            public MutablePerson()
+            {
+                Phones = new List<MutablePhoneNumber>();
+            }
+        }
+
+        public sealed class MutableAddress
+        {
+            public string Street { get; set; }
+            public string City { get; set; }
+
+            public MutableAddress()
+            {
+            }
+        }
+
+        public sealed class MutablePhoneNumber
+        {
+            public string Number { get; set; }
+            public MutablePhoneNumberType Type { get; set; }
+
+            public MutablePhoneNumber()
+            {
+            }
+        }
+
+        public enum MutablePhoneNumberType
+        {
+            Mobile = 0,
+            Home = 1,
+            Work = 2
         }
     }
 }
