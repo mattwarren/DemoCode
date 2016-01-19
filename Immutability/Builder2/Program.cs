@@ -1,15 +1,18 @@
 ﻿// Copyright 2016 Jon Skeet. All Rights Reserved.
 // Licensed under the Apache License Version 2.0.
 
-class Program
+namespace Builder2
 {
-    static void Main(string[] args)
+    class Program
     {
-        var jon = new Person.Builder
+        static void Main(string[] args)
         {
-            Name = "Jon",
-            Address = new Address.Builder { City = "Reading", Street = "..." }.Build(),
-            Phones = { }
-        };
+            var jon = new Person.Builder
+            {
+                Name = "Jon",
+                Address = new Address.Builder { City = "Reading", Street = "..." }.Build(),
+                Phones = { }
+            };
+        }
     }
 }

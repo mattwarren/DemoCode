@@ -3,14 +3,17 @@
 
 using System.Collections.Immutable;
 
-class Program
+namespace Withers
 {
-    static void Main(string[] args)
+    class Program
     {
-        var jon = new Person(
-            name: "Foo",
-            address: null, // Do this later
-            phones: new[] { new PhoneNumber("1235", PhoneNumberType.Home) }.ToImmutableList());
-        var later = jon.WithAddress(new Address("School Road", "Reading"));
+        static void Main(string[] args)
+        {
+            var jon = new Person(
+                name: "Foo",
+                address: null, // Do this later
+                phones: new[] { new PhoneNumber("1235", PhoneNumberType.Home) }.ToImmutableList());
+            var later = jon.WithAddress(new Address("School Road", "Reading"));
+        }
     }
 }

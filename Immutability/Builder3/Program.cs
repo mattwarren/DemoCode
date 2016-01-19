@@ -1,15 +1,18 @@
 ﻿// Copyright 2016 Jon Skeet. All Rights Reserved.
 // Licensed under the Apache License Version 2.0.
 
-class Program
+namespace Builder3
 {
-    static void Main(string[] args)
+    class Program
     {
-        var jon = new Person
+        static void Main(string[] args)
         {
-            Name = "Jon",
-            Address = new Address { City = "Reading", Street = "..." },
-            Phones = { }
-        };
+            var jon = new Person
+            {
+                Name = "Jon",
+                Address = new Address { City = "Reading", Street = "..." },
+                Phones = { }
+            }.ToImmutable();
+        }
     }
 }
