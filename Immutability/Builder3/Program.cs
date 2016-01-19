@@ -12,7 +12,7 @@ namespace Builder3
                 Name = "Jon",
                 Address = new Address { City = "Reading", Street = "..." },
                 Phones = { }
-            };
+            }.ToImmutable();
         }
     }
 }

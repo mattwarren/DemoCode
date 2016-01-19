@@ -35,7 +35,7 @@ namespace ImmutabilityBenchmark
         }
 
         [Benchmark]
-        public Builder3.Person Builder3()
+        public Builder3.Person.Immutable Builder3()
         {
             var jon = new Builder3.Person
             {
@@ -43,7 +43,7 @@ namespace ImmutabilityBenchmark
                 Address = new Builder3.Address { City = "Reading", Street = "..." },
                 Phones = { }
             };
-            return jon;
+            return jon.ToImmutable();
         }
 
         [Benchmark("Withers")]
