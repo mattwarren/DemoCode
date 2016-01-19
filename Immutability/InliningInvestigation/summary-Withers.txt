@@ -1,0 +1,30 @@
+Files Processed:
+	InliningEvents.etl
+Total Buffers Processed 225
+Total Events  Processed 1948
+Total Events  Lost      0
+Start Time              19 January 2016
+End Time                19 January 2016
+Elapsed Time            52 sec
++-------------------------------------------------------------------------------------------------------------------------+
+|Event Count   Event Name           Task            Opcode          Version         Guid                                  |
++-------------------------------------------------------------------------------------------------------------------------+
+|          1   EventTrace           0               Header          2               {68fdd900-4a3e-11d1-84f4-0000f80464e3}|
+|         11   Microsoft-Windows-DotNETRuntime 9               TailCallFailed  0               {e13c0d23-ccbc-4e12-931b-d9cc2eee27e4}|
+|         36   Microsoft-Windows-DotNETRuntime 9               TailCallSucceeded  0               {e13c0d23-ccbc-4e12-931b-d9cc2eee27e4}|
+|        718   Microsoft-Windows-DotNETRuntime 9               InliningSucceeded  0               {e13c0d23-ccbc-4e12-931b-d9cc2eee27e4}|
+|       1180   Microsoft-Windows-DotNETRuntime 9               InliningFailed  0               {e13c0d23-ccbc-4e12-931b-d9cc2eee27e4}|
+|          1   Microsoft-Windows-DotNETRuntime 19              Start           0               {e13c0d23-ccbc-4e12-931b-d9cc2eee27e4}|
+|          1   CLR Exception        0               Exception       0               {300ce105-86d1-41f8-b9d2-83fcbff32d99}|
++-------------------------------------------------------------------------------------------------------------------------+
++---------------------------------------------------------------------------------------------------------+
+|Event Count   Event Name           Event ID        Version         Guid                                  |
++---------------------------------------------------------------------------------------------------------+
+|          1   EventTrace           0               2               {68fdd900-4a3e-11d1-84f4-0000f80464e3}|
+|        718   Microsoft-Windows-DotNETRuntime 185             0               {e13c0d23-ccbc-4e12-931b-d9cc2eee27e4}|
+|       1180   Microsoft-Windows-DotNETRuntime 186             0               {e13c0d23-ccbc-4e12-931b-d9cc2eee27e4}|
+|          1   Microsoft-Windows-DotNETRuntime 187             0               {e13c0d23-ccbc-4e12-931b-d9cc2eee27e4}|
+|         36   Microsoft-Windows-DotNETRuntime 188             0               {e13c0d23-ccbc-4e12-931b-d9cc2eee27e4}|
+|         11   Microsoft-Windows-DotNETRuntime 189             0               {e13c0d23-ccbc-4e12-931b-d9cc2eee27e4}|
+|          1   CLR Exception        0               0               {300ce105-86d1-41f8-b9d2-83fcbff32d99}|
++---------------------------------------------------------------------------------------------------------+
